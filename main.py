@@ -6,6 +6,10 @@ with open("answers.txt", "r") as file:
 with open("guesses.txt", "r") as file:
     possible_guesses = set(file.read().splitlines() + possible_answers)
 
+# Create answer_found Boolean
+
+answer_found = False
+
 # Create Remaining Answers and Guess History Lists
 
 remaining_answers = possible_answers.copy()
@@ -36,8 +40,31 @@ def get_feedback(guess, answer):
 
     return ''.join(result)
 
-# Run Guess + Answers -> Filter 6 Times
-for i in range(6):
+def suggest_guess(remaining_answers):
+    letter_frequency = {}
+
+    # Count how many answers contain each letter
+    for answer in remaining_answers:
+        for letter in set(answer):
+            letter_frequency[letter] = letter_frequency.get(letter, 0) + 1
+
+    # Score each remaining answer
+    guess_scores = {}
+
+    for guess in remaining_answers:
+        score = 0
+
+        for letter in set(guess):
+            score += letter_frequency[letter]
+
+        guess_scores[guess] = score
+
+    best_guess = max(guess_scores, key=guess_scores.get)
+
+    return best_guess, guess_scores[best_guess]
+
+# Run Until Answer is Found
+while not answer_found:
     # Get Guess + Feedback From User
     while True:
         guess = str(input("Guess: ")).lower()
@@ -55,14 +82,29 @@ for i in range(6):
 
     # Check if set(feedback) == {'G'} (feedback only contains G's)
     if set(feedback) == {'G'}:
-        print("Correct Answer Found!")
+        print("Answer Found!")
+        answer_found = True
         break
 
     # Filter Out Non-Matching Answers
     remaining_answers = [answer for answer in remaining_answers if get_feedback(guess, answer) == feedback]
-    print(f"{len(remaining_answers)} answers remaining")
-    print(f"Remaining answers: {remaining_answers}")
+    if remaining_answers:
+        if len(remaining_answers) > 1:
+            print(f"\n{len(remaining_answers)} answers remaining")
+            print(f"Remaining answers: {remaining_answers}\n")
+
+            best_guess, score = suggest_guess(remaining_answers)
+
+            print(f"Suggested next guess: {best_guess.upper()}")
+            print(f"Guess score: {score}\n")
+
+        else:
+            print(f"Answer: {remaining_answers[0].upper()}")
+            answer_found = True
+
+    else:
+        print("No possible answers remain. Check your feedback.")
 
 # All 6 guesses are used and correct answer not found
-if set(feedback) != {'G'}:
+if not answer_found:
     print("No more guesses")
