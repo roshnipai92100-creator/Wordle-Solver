@@ -1,0 +1,568 @@
+----------------------------------------
+########################################
+TABLE OF CONTENTS
+########################################
+----------------------------------------
+Wordle Solver Versions:
+v1.0.0: Lines 18-568
+
+
+
+
+
+
+
+
+
+
+----------------------------------------
+########################################
+WORDLE SOLVER v1.0.0
+########################################
+----------------------------------------
+
+WORDLE BENCHMARK — SEED 0
+----------------------------------------
+Total games:       2315
+Successful games:  2296
+Failed games:      19
+Filtering accuracy: 100.00%
+Solve rate:         99.18%
+Average guesses:    4.015
+Worst-case guesses: 7
+Average game time:  3.964 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 216.27
+After guess 2: 19.00
+After guess 3: 3.53
+After guess 4: 1.79
+After guess 5: 1.38
+
+WORDLE BENCHMARK — SEED 1
+----------------------------------------
+Total games:       2315
+Successful games:  2280
+Failed games:      35
+Filtering accuracy: 100.00%
+Solve rate:         98.49%
+Average guesses:    4.054
+Worst-case guesses: 7
+Average game time:  3.956 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 224.64
+After guess 2: 19.03
+After guess 3: 3.61
+After guess 4: 1.91
+After guess 5: 1.63
+
+WORDLE BENCHMARK — SEED 2
+----------------------------------------
+Total games:       2315
+Successful games:  2275
+Failed games:      40
+Filtering accuracy: 100.00%
+Solve rate:         98.27%
+Average guesses:    4.016
+Worst-case guesses: 7
+Average game time:  4.035 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 212.58
+After guess 2: 19.60
+After guess 3: 3.65
+After guess 4: 1.94
+After guess 5: 1.60
+
+WORDLE BENCHMARK — SEED 3
+----------------------------------------
+Total games:       2315
+Successful games:  2274
+Failed games:      41
+Filtering accuracy: 100.00%
+Solve rate:         98.23%
+Average guesses:    4.029
+Worst-case guesses: 7
+Average game time:  3.993 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 213.00
+After guess 2: 19.35
+After guess 3: 3.77
+After guess 4: 2.01
+After guess 5: 1.58
+
+WORDLE BENCHMARK — SEED 4
+----------------------------------------
+Total games:       2315
+Successful games:  2275
+Failed games:      40
+Filtering accuracy: 100.00%
+Solve rate:         98.27%
+Average guesses:    4.054
+Worst-case guesses: 7
+Average game time:  3.916 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 214.25
+After guess 2: 19.14
+After guess 3: 3.54
+After guess 4: 1.87
+After guess 5: 1.57
+
+WORDLE BENCHMARK — SEED 5
+----------------------------------------
+Total games:       2315
+Successful games:  2266
+Failed games:      49
+Filtering accuracy: 100.00%
+Solve rate:         97.88%
+Average guesses:    4.035
+Worst-case guesses: 7
+Average game time:  3.950 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 218.94
+After guess 2: 18.56
+After guess 3: 3.48
+After guess 4: 1.91
+After guess 5: 1.72
+
+WORDLE BENCHMARK — SEED 6
+----------------------------------------
+Total games:       2315
+Successful games:  2274
+Failed games:      41
+Filtering accuracy: 100.00%
+Solve rate:         98.23%
+Average guesses:    4.053
+Worst-case guesses: 7
+Average game time:  4.469 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 226.73
+After guess 2: 20.50
+After guess 3: 3.63
+After guess 4: 2.06
+After guess 5: 1.73
+
+WORDLE BENCHMARK — SEED 7
+----------------------------------------
+Total games:       2315
+Successful games:  2274
+Failed games:      41
+Filtering accuracy: 100.00%
+Solve rate:         98.23%
+Average guesses:    4.027
+Worst-case guesses: 7
+Average game time:  3.987 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 211.41
+After guess 2: 18.56
+After guess 3: 3.69
+After guess 4: 1.96
+After guess 5: 1.59
+
+WORDLE BENCHMARK — SEED 8
+----------------------------------------
+Total games:       2315
+Successful games:  2278
+Failed games:      37
+Filtering accuracy: 100.00%
+Solve rate:         98.40%
+Average guesses:    4.027
+Worst-case guesses: 7
+Average game time:  4.315 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 216.70
+After guess 2: 18.41
+After guess 3: 3.48
+After guess 4: 1.92
+After guess 5: 1.61
+
+WORDLE BENCHMARK — SEED 9
+----------------------------------------
+Total games:       2315
+Successful games:  2276
+Failed games:      39
+Filtering accuracy: 100.00%
+Solve rate:         98.32%
+Average guesses:    4.011
+Worst-case guesses: 7
+Average game time:  4.123 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 221.87
+After guess 2: 19.32
+After guess 3: 3.53
+After guess 4: 1.95
+After guess 5: 1.62
+
+WORDLE BENCHMARK — SEED 10
+----------------------------------------
+Total games:       2315
+Successful games:  2275
+Failed games:      40
+Filtering accuracy: 100.00%
+Solve rate:         98.27%
+Average guesses:    4.039
+Worst-case guesses: 7
+Average game time:  4.026 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 212.13
+After guess 2: 19.68
+After guess 3: 3.61
+After guess 4: 1.89
+After guess 5: 1.69
+
+WORDLE BENCHMARK — SEED 11
+----------------------------------------
+Total games:       2315
+Successful games:  2267
+Failed games:      48
+Filtering accuracy: 100.00%
+Solve rate:         97.93%
+Average guesses:    4.014
+Worst-case guesses: 7
+Average game time:  3.776 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 215.98
+After guess 2: 19.93
+After guess 3: 3.65
+After guess 4: 2.06
+After guess 5: 1.63
+
+WORDLE BENCHMARK — SEED 12
+----------------------------------------
+Total games:       2315
+Successful games:  2271
+Failed games:      44
+Filtering accuracy: 100.00%
+Solve rate:         98.10%
+Average guesses:    4.031
+Worst-case guesses: 7
+Average game time:  3.728 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 217.34
+After guess 2: 18.65
+After guess 3: 3.52
+After guess 4: 2.00
+After guess 5: 1.63
+
+WORDLE BENCHMARK — SEED 13
+----------------------------------------
+Total games:       2315
+Successful games:  2277
+Failed games:      38
+Filtering accuracy: 100.00%
+Solve rate:         98.36%
+Average guesses:    4.054
+Worst-case guesses: 7
+Average game time:  3.678 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 213.55
+After guess 2: 19.41
+After guess 3: 3.59
+After guess 4: 1.95
+After guess 5: 1.64
+
+WORDLE BENCHMARK — SEED 14
+----------------------------------------
+Total games:       2315
+Successful games:  2274
+Failed games:      41
+Filtering accuracy: 100.00%
+Solve rate:         98.23%
+Average guesses:    4.015
+Worst-case guesses: 7
+Average game time:  3.710 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 218.29
+After guess 2: 18.99
+After guess 3: 3.38
+After guess 4: 1.93
+After guess 5: 1.67
+
+WORDLE BENCHMARK — SEED 15
+----------------------------------------
+Total games:       2315
+Successful games:  2282
+Failed games:      33
+Filtering accuracy: 100.00%
+Solve rate:         98.57%
+Average guesses:    4.014
+Worst-case guesses: 7
+Average game time:  3.728 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 220.76
+After guess 2: 18.76
+After guess 3: 3.49
+After guess 4: 1.95
+After guess 5: 1.60
+
+WORDLE BENCHMARK — SEED 16
+----------------------------------------
+Total games:       2315
+Successful games:  2274
+Failed games:      41
+Filtering accuracy: 100.00%
+Solve rate:         98.23%
+Average guesses:    4.033
+Worst-case guesses: 7
+Average game time:  3.730 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 212.02
+After guess 2: 19.44
+After guess 3: 3.60
+After guess 4: 1.96
+After guess 5: 1.70
+
+WORDLE BENCHMARK — SEED 17
+----------------------------------------
+Total games:       2315
+Successful games:  2281
+Failed games:      34
+Filtering accuracy: 100.00%
+Solve rate:         98.53%
+Average guesses:    4.042
+Worst-case guesses: 7
+Average game time:  3.642 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 221.43
+After guess 2: 20.03
+After guess 3: 3.56
+After guess 4: 1.87
+After guess 5: 1.59
+
+WORDLE BENCHMARK — SEED 18
+----------------------------------------
+Total games:       2315
+Successful games:  2275
+Failed games:      40
+Filtering accuracy: 100.00%
+Solve rate:         98.27%
+Average guesses:    4.011
+Worst-case guesses: 7
+Average game time:  3.666 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 225.18
+After guess 2: 20.14
+After guess 3: 3.64
+After guess 4: 2.05
+After guess 5: 1.59
+
+WORDLE BENCHMARK — SEED 19
+----------------------------------------
+Total games:       2315
+Successful games:  2281
+Failed games:      34
+Filtering accuracy: 100.00%
+Solve rate:         98.53%
+Average guesses:    4.025
+Worst-case guesses: 7
+Average game time:  3.650 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 215.46
+After guess 2: 18.97
+After guess 3: 3.59
+After guess 4: 1.99
+After guess 5: 1.58
+
+WORDLE BENCHMARK — SEED 20
+----------------------------------------
+Total games:       2315
+Successful games:  2279
+Failed games:      36
+Filtering accuracy: 100.00%
+Solve rate:         98.44%
+Average guesses:    4.009
+Worst-case guesses: 7
+Average game time:  3.640 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 212.25
+After guess 2: 18.55
+After guess 3: 3.30
+After guess 4: 1.97
+After guess 5: 1.51
+
+WORDLE BENCHMARK — SEED 21
+----------------------------------------
+Total games:       2315
+Successful games:  2269
+Failed games:      46
+Filtering accuracy: 100.00%
+Solve rate:         98.01%
+Average guesses:    4.032
+Worst-case guesses: 7
+Average game time:  3.658 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 217.35
+After guess 2: 18.93
+After guess 3: 3.52
+After guess 4: 2.02
+After guess 5: 1.60
+
+WORDLE BENCHMARK — SEED 22
+----------------------------------------
+Total games:       2315
+Successful games:  2280
+Failed games:      35
+Filtering accuracy: 100.00%
+Solve rate:         98.49%
+Average guesses:    4.017
+Worst-case guesses: 7
+Average game time:  3.604 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 212.64
+After guess 2: 19.17
+After guess 3: 3.70
+After guess 4: 1.95
+After guess 5: 1.68
+
+WORDLE BENCHMARK — SEED 23
+----------------------------------------
+Total games:       2315
+Successful games:  2279
+Failed games:      36
+Filtering accuracy: 100.00%
+Solve rate:         98.44%
+Average guesses:    4.053
+Worst-case guesses: 7
+Average game time:  3.654 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 217.45
+After guess 2: 19.53
+After guess 3: 3.55
+After guess 4: 1.94
+After guess 5: 1.70
+
+WORDLE BENCHMARK — SEED 24
+----------------------------------------
+Total games:       2315
+Successful games:  2258
+Failed games:      57
+Filtering accuracy: 100.00%
+Solve rate:         97.54%
+Average guesses:    4.044
+Worst-case guesses: 7
+Average game time:  3.679 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 219.82
+After guess 2: 19.41
+After guess 3: 3.56
+After guess 4: 2.07
+After guess 5: 1.73
+
+WORDLE BENCHMARK — SEED 25
+----------------------------------------
+Total games:       2315
+Successful games:  2271
+Failed games:      44
+Filtering accuracy: 100.00%
+Solve rate:         98.10%
+Average guesses:    4.005
+Worst-case guesses: 7
+Average game time:  3.752 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 216.17
+After guess 2: 19.30
+After guess 3: 3.75
+After guess 4: 2.12
+After guess 5: 1.73
+
+WORDLE BENCHMARK — SEED 26
+----------------------------------------
+Total games:       2315
+Successful games:  2264
+Failed games:      51
+Filtering accuracy: 100.00%
+Solve rate:         97.80%
+Average guesses:    4.016
+Worst-case guesses: 7
+Average game time:  3.583 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 218.83
+After guess 2: 19.95
+After guess 3: 3.52
+After guess 4: 1.98
+After guess 5: 1.78
+
+WORDLE BENCHMARK — SEED 27
+----------------------------------------
+Total games:       2315
+Successful games:  2268
+Failed games:      47
+Filtering accuracy: 100.00%
+Solve rate:         97.97%
+Average guesses:    4.032
+Worst-case guesses: 7
+Average game time:  3.608 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 218.57
+After guess 2: 19.91
+After guess 3: 3.67
+After guess 4: 2.01
+After guess 5: 1.68
+
+WORDLE BENCHMARK — SEED 28
+----------------------------------------
+Total games:       2315
+Successful games:  2275
+Failed games:      40
+Filtering accuracy: 100.00%
+Solve rate:         98.27%
+Average guesses:    4.031
+Worst-case guesses: 7
+Average game time:  3.690 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 216.89
+After guess 2: 18.51
+After guess 3: 3.49
+After guess 4: 1.84
+After guess 5: 1.59
+
+WORDLE BENCHMARK — SEED 29
+----------------------------------------
+Total games:       2315
+Successful games:  2284
+Failed games:      31
+Filtering accuracy: 100.00%
+Solve rate:         98.66%
+Average guesses:    4.035
+Worst-case guesses: 7
+Average game time:  3.637 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 220.09
+After guess 2: 19.42
+After guess 3: 3.64
+After guess 4: 1.81
+After guess 5: 1.53
+
+FINAL BENCHMARK RESULTS
+----------------------------------------
+Mean solve rate: 98.28%
+Mean average guesses: 4.029
+Mean execution time: 3.818 ms
