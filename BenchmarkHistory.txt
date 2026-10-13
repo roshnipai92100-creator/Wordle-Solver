@@ -5,7 +5,7 @@ TABLE OF CONTENTS
 ----------------------------------------
 Wordle Solver Versions:
 v1.0.0: Lines 18-568
-
+v1.1.0: Lines 570-592
 
 
 
@@ -566,3 +566,27 @@ FINAL BENCHMARK RESULTS
 Mean solve rate: 98.28%
 Mean average guesses: 4.029
 Mean execution time: 3.818 ms
+
+----------------------------------------
+########################################
+WORDLE SOLVER v1.1.0
+########################################
+----------------------------------------
+
+WORDLE BENCHMARK — SEED 0
+----------------------------------------
+Total games:       2315
+Successful games:  2293
+Failed games:      22
+Filtering accuracy: 100.00%
+Solve rate:         99.05%
+Average guesses:    3.650
+Worst-case guesses: 7
+Average game time:  7.494 ms
+
+AVERAGE REMAINING CANDIDATES
+After guess 1: 71.63
+After guess 2: 5.12
+After guess 3: 1.89
+After guess 4: 1.70
+After guess 5: 1.75
