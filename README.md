@@ -136,4 +136,4 @@ For detailed results and testing methodology, see [BENCHMARK.md](BENCHMARK.md).
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE.md) for details.
+This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
