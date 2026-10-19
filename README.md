@@ -152,7 +152,7 @@ Adding a graphical interface does not change the underlying solving algorithm, b
 
 ## License
 
-See the `LICENSE` file for licensing information.
+See [LICENSE.md](LICENSE.md) for licensing information.
 
 ## Disclaimer
 
