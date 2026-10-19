@@ -1,139 +1,159 @@
 # Wordle Solver
 
-A Python-based Wordle solver that filters possible answers using Wordle feedback and recommends guesses through a letter-frequency scoring algorithm.
+A Python Wordle solver with automatic screen reading, OCR, and a desktop interface.
 
-The project focuses on exploring different word-selection strategies and measuring their performance through automated benchmarking.
-
-## Disclaimer
-All versions of Wordle may not work. This solver is general and includes the original 2,315 possible answers and 12,972 valid guesses. 
+The project combines a feedback-based word filtering algorithm with OpenCV, Tesseract OCR, and Tkinter to read a Wordle board directly from the screen and recommend the next guess.
 
 ## Features
 
-- Filters possible answers based on previous guesses and feedback.
-- Supports Wordle's green, yellow, and gray feedback system.
-- Handles repeated letters when generating feedback.
-- Validates user guesses and feedback.
-- Recommends the next guess using letter-frequency scoring.
-- Displays the number of remaining possible answers.
-- Includes automated benchmarking against all 2,315 possible answers.
+### Solving Algorithm
+- Filters possible answers using Wordle's feedback rules.
+- Correctly handles repeated letters.
+- Scores remaining answers using letter frequency.
+- Recommends the highest-scoring remaining answer.
+- Supports multiple guesses and their corresponding feedback.
+- Includes a terminal interface for manual play.
+
+### Automatic Screen Reader
+- Captures the Wordle board directly from the screen.
+- Detects and organizes all 30 tiles using OpenCV.
+- Removes duplicate tile detections.
+- Identifies green, yellow, gray, and empty tiles.
+- Supports light, dark, and high-contrast Wordle themes.
+- Uses Tesseract OCR to recognize letters in completed rows.
+- Converts visual feedback into a format understood by the solver.
+
+### Desktop GUI
+- Built with Tkinter.
+- Displays a visual representation of the detected board.
+- Supports window resizing.
+- Includes an optional Always on Top setting.
+- Automatically minimizes during screen capture.
+- Displays the recommended next guess and remaining candidate count.
+- Rejects incomplete or uncertain OCR results rather than silently passing them to the solver.
 
 ## How It Works
 
-The solver begins with a list of possible Wordle answers.
+1. Open Wordle in your browser.
+2. Launch the desktop application.
+3. Enter and submit a guess in Wordle.
+4. Click **Scan Wordle** in the application.
+5. The program captures the screen and identifies the board.
+6. OpenCV detects tile positions and feedback colors.
+7. Tesseract reads the letters.
+8. The detected guess history is passed to the solver.
+9. The application displays the recommended next guess.
 
-After each guess, the user enters the corresponding feedback:
-
-| Symbol | Meaning |
-|---|---|
-| G | Green — correct letter in the correct position |
-| Y | Yellow — correct letter in the wrong position |
-| X | Gray — letter is not present, or all available occurrences have already been accounted for |
-
-The solver compares the feedback against every remaining possible answer and eliminates words that are inconsistent with the results.
-
-It then recommends a new guess based on the remaining candidates.
-
-### Guess Suggestion Algorithm (v1.1.0)
-
-The current algorithm uses letter-frequency scoring.
-
-1. Count how many remaining answers contain each unique letter.
-2. Calculate a score for each remaining answer by adding the frequencies of its unique letters.
-3. Recommend the word with the highest score.
-
-Repeated letters are counted only once during scoring to avoid unnecessarily rewarding duplicate letters.
-
-The algorithm prioritizes commonly occurring letters to help narrow down the remaining possibilities.
+The application reads the board and provides recommendations. It does not automatically type or submit guesses.
 
 ## Installation
 
 ### Requirements
 
-- Python 3
-- No external Python packages required
+- Python
+- Tesseract OCR
+- A graphical desktop environment
+- The dependencies listed below
 
-Clone the repository:
-
-```bash
-git clone https://github.com/roshnipai92100-creator/wordle-solver.git
-```
-
-Navigate into the project directory:
+Install the Python packages:
 
 ```bash
-cd wordle-solver
+pip install numpy opencv-python pyautogui pytesseract pillow
 ```
 
-Run the solver:
+Tkinter is included with most standard Python installations.
 
-```bash
-python main.py
+Install Tesseract OCR separately and configure its executable location in `config.py`:
+
+```python
+TESSERACT_PATH = r"C:\path\to\tesseract.exe"
 ```
 
-Make sure `answers.txt` and `guesses.txt` are present in the project directory.
+Update the path to match your installation.
+
+### Word Lists
+
+Place the following files in the same directory as `solver.py`:
+
+- `answers.txt` — possible Wordle answers.
+- `guesses.txt` — additional valid guesses.
 
 ## Usage
 
-1. Enter a valid five-letter Wordle guess.
-2. Enter the feedback received from Wordle using X, Y, and G.
-3. Review the remaining possible answers and the suggested next guess.
-4. Repeat until the answer is found or six guesses have been used.
-
-Example:
-
-```text
-Guess: crane
-Feedback (X = Gray, Y = Yellow, G = Green): XXYXG
-
-Suggested next guess: ...
-Guess score: ...
-```
-
-The suggestion and score depend on the current list of remaining answers.
-
-## Benchmarks
-
-The solver is evaluated by simulating games against all 2,315 possible answers.
-
-| Metric | v1.0.0 | v1.1.0 |
-|---|---:|---:|
-| Algorithm | Random selection | Letter-frequency scoring |
-| Solve rate | 98.28% | 99.05% |
-| Average guesses (wins) | 4.029 | 3.650 |
-| Average execution time | 3.818 ms | 7.494 ms |
-| Filtering accuracy (self-consistency) | 100% | 100% |
-
-The v1.0.0 results represent averages across 30 random seeds. The v1.1.0 results come from one deterministic benchmark covering all possible answers.
-
-**v1.1.0 reduced the average number of guesses for successful games by approximately 9.4%.**
-
-Run the current benchmark with:
+Launch the graphical application:
 
 ```bash
-python benchmark.py
+python gui.py
 ```
 
-For detailed results and testing methodology, see [BENCHMARK.md](BENCHMARK.md).
+Alternatively, launch the original terminal-based solver:
 
-## Version History
+```bash
+python solver.py
+```
 
-### v1.1.0 — Letter Frequency Scoring
-- Introduced automated guess suggestions.
-- Added frequency-based candidate scoring.
-- Improved solve rate and average guess efficiency.
+The GUI captures the visible screen, so make sure the Wordle board is fully visible and its animations have finished before scanning.
 
-### v1.0.0 — Initial Release
-- Implemented Wordle feedback processing.
-- Added answer filtering.
-- Established automated benchmarking with random guess selection.
+## Project Structure
 
-## Planned Improvements
+```text
+Wordle-Solver/
+├── gui.py
+├── main.py
+├── solver.py
+├── screen_reader.py
+├── board_detector.py
+├── tile_reader.py
+├── config.py
+├── answers.txt
+├── guesses.txt
+└── README.md
+```
 
-- Position-based letter-frequency scoring.
-- More advanced guess-selection strategies.
-- Evaluation of guesses outside the remaining answer list.
-- Additional benchmark comparisons.
+| File | Purpose |
+|---|---|
+| `gui.py` | Desktop application |
+| `main.py` | Screen-reading test entry point |
+| `solver.py` | Filtering and recommendation algorithm |
+| `screen_reader.py` | Screenshot capture |
+| `board_detector.py` | Tile detection and grid organization |
+| `tile_reader.py` | Color recognition and OCR |
+| `config.py` | Shared settings and reference colors |
+
+## Solver Algorithm
+
+The solver begins with a list of possible answers.
+
+For every submitted guess, it compares the actual feedback against the feedback that would be produced by each hypothetical answer.
+
+Candidates producing different feedback are eliminated.
+
+For the remaining candidates, the solver calculates letter frequencies and scores each possible answer based on its unique letters. The highest-scoring remaining answer is recommended.
+
+This approach keeps the solving algorithm independent of the screen-reading and GUI components.
+
+## Limitations
+
+- Screen detection depends on the Wordle board being visible.
+- OCR can occasionally misidentify individual letters.
+- Screenshots taken during tile animations may produce incorrect feedback.
+- Changes to Wordle's visual design may require adjustments to detection settings.
+- The application currently requires a locally installed Tesseract executable.
+
+## Benchmarking
+
+Algorithm performance and application performance are measured separately.
+
+Algorithm benchmarks evaluate solve rate, average guesses, filtering accuracy, and execution time.
+
+Application benchmarks evaluate screenshot capture, board detection, color recognition, OCR accuracy, and total Scan & Solve time.
+
+Adding a graphical interface does not change the underlying solving algorithm, but screen capture and OCR introduce additional processing time.
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE.md](LICENSE.md) for details.
+See the `LICENSE` file for licensing information.
+
+## Disclaimer
+
+This is an independent educational project and is not affiliated with or endorsed by The New York Times or Wordle.
