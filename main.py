@@ -1,110 +1,90 @@
-# Create Possible Answers and Possible Guesses Lists
+import cv2
+import time
 
-with open("answers.txt", "r") as file:
-    possible_answers = file.read().splitlines()
+from screen_reader import capture_screen
+from board_detector import detect_tiles, remove_duplicates, organize_grid
+from tile_reader import read_color
+from config import SCREENSHOT_PATH, DEBUG_IMAGE_PATH
 
-with open("guesses.txt", "r") as file:
-    possible_guesses = set(file.read().splitlines() + possible_answers)
 
-# Create answer_found Boolean
+def main():
+    # Step 1: Capture the screen
+    print("Open Wordle. Capturing in 3 seconds...")
 
-answer_found = False
+    time.sleep(3)
 
-# Create Remaining Answers and Guess History Lists
+    image = capture_screen()
 
-remaining_answers = possible_answers.copy()
+    cv2.imwrite(SCREENSHOT_PATH, image)
 
-guess_history = []
+    # Step 2: Detect possible tiles
+    tiles = detect_tiles(image)
 
-# Create Guess Scores Dictionary ("Word": Score)
+    print(f"Raw detections: {len(tiles)}")
 
-guess_scores = {}
+    # Step 3: Remove duplicates
+    tiles = remove_duplicates(tiles)
 
-# get_feedback(): Compare Hypothetical Answer Feedback to Guess Feedback to Remove Non-Matching Answers
+    print(f"Unique detections: {len(tiles)}")
 
-def get_feedback(guess, answer):
-    result = ["X"] * 5
-    remaining = list(answer)
+    # Step 4: Organize tiles into rows and columns
+    if len(tiles) != 30:
+        print("Could not identify exactly 30 Wordle tiles.")
+        return
 
-    # First, find green letters
-    for i in range(5):
-        if guess[i] == answer[i]:
-            result[i] = 'G'
-            remaining[i] = None
+    grid = organize_grid(tiles)
 
-    # Next, find yellow letters
-    for i in range(5):
-        if result[i] != 'G' and guess[i] in remaining:
-            result[i] = 'Y'
-            remaining[remaining.index(guess[i])] = None
+    # Step 5: Read each tile's color
+    print("\nDetected Wordle Board:")
 
-    return ''.join(result)
+    for row_number, row in enumerate(grid):
 
-def suggest_guess(remaining_answers):
-    letter_frequency = {}
+        colors = []
 
-    # Count how many answers contain each letter
-    for answer in remaining_answers:
-        for letter in set(answer):
-            letter_frequency[letter] = letter_frequency.get(letter, 0) + 1
+        for tile in row:
+            color = read_color(image, tile)
+            colors.append(color)
 
-    # Score each remaining answer
-    guess_scores = {}
+        print(f"Row {row_number + 1}: {colors}")
 
-    for guess in remaining_answers:
-        score = 0
+    # Step 6: Save a debugging image
+    debug_image = image.copy()
 
-        for letter in set(guess):
-            score += letter_frequency[letter]
+    for row in grid:
+        for x, y, w, h in row:
+            cv2.rectangle(
+                debug_image,
+                (x, y),
+                (x + w, y + h),
+                (0, 255, 0),
+                2
+            )
 
-        guess_scores[guess] = score
+    for row_number, row in enumerate(grid):
 
-    best_guess = max(guess_scores, key=guess_scores.get)
+        colors = []
 
-    return best_guess, guess_scores[best_guess]
+        for tile in row:
+            color = read_color(image, tile)
 
-# Run Until Answer is Found
-while not answer_found:
-    # Get Guess + Feedback From User
-    while True:
-        guess = str(input("Guess: ")).lower()
-        if guess in possible_guesses:
-            break
-        else:
-            print("Invalid input")
-    while True:
-        feedback = str(input("Feedback (X = Gray, Y = Yellow, G = Green): ")).upper()
-        if len(feedback) == 5 and all(letter in "XYG" for letter in feedback):
-            guess_history.append((guess, feedback))
-            break
-        else:
-            print("Invalid input")
+            x, y, w, h = tile
 
-    # Check if set(feedback) == {'G'} (feedback only contains G's)
-    if set(feedback) == {'G'}:
-        print("Answer Found!")
-        answer_found = True
-        break
+            sample_x = x + int(w * 0.2)
+            sample_y = y + int(h * 0.2)
 
-    # Filter Out Non-Matching Answers
-    remaining_answers = [answer for answer in remaining_answers if get_feedback(guess, answer) == feedback]
-    if remaining_answers:
-        if len(remaining_answers) > 1:
-            print(f"\n{len(remaining_answers)} answers remaining")
-            print(f"Remaining answers: {remaining_answers}\n")
+            bgr = image[sample_y, sample_x]
+            rgb = bgr[::-1]
 
-            best_guess, score = suggest_guess(remaining_answers)
+            print(f"Tile ({x}, {y}) RGB: {rgb}")
 
-            print(f"Suggested next guess: {best_guess.upper()}")
-            print(f"Guess score: {score}\n")
+            colors.append(color)
 
-        else:
-            print(f"Answer: {remaining_answers[0].upper()}")
-            answer_found = True
+        print(f"Row {row_number + 1}: {colors}")
 
-    else:
-        print("No possible answers remain. Check your feedback.")
+    cv2.imwrite(DEBUG_IMAGE_PATH, debug_image)
 
-# All 6 guesses are used and correct answer not found
-if not answer_found:
-    print("No more guesses")
+    print("\nScreen reading complete!")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,5 +1,17 @@
-.idea/
-.venv/
+# Python
 __pycache__/
 *.pyc
-.env
+.venv/
+venv/
+
+# IDE
+.idea/
+
+# Generated screenshots
+wordle_screenshot.png
+detected_tiles.png
+ocr_debug_*.png
+failed_ocr_*.png
+
+# Temporary files
+*.log
